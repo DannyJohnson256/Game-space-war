@@ -19,3 +19,11 @@ BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 GREY = (128, 128, 128)
 INV = (71, 112, 77)
+
+# окно игры
+pygame.init()
+pygame.mixer.init()
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Space war")
+clock = pygame.time.Clock()
+font_name = pygame.font.match_font('arial')
