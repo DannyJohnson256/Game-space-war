@@ -170,3 +170,22 @@ class Mob(pygame.sprite.Sprite):
             self.rect.x = random.randrange(WIDTH - self.rect.width)
             self.rect.y = random.randrange(-100, -40)
             self.speedy = random.randrange(1, 8)
+
+# изображения корабля, снарядов и метеоритов
+background = pygame.image.load(path.join(img_dir, "звездное небо фона.png")).convert_alpha()
+background_rect = background.get_rect()
+player_img = pygame.image.load(path.join(img_dir, "кораблик.png")).convert_alpha()
+player_mini_img = pygame.transform.scale(player_img, (25, 19))
+player_mini_img.set_colorkey(BLACK)
+bullet_img = pygame.image.load(path.join(img_dir, "снаряд.png")).convert_alpha()
+meteor_images = []
+meteor_list = ['метеор большой.png', 'метеор средний 1.png',
+               'метеор средний 2.png', 'метеор маленький 1.png', 'метеор маленький 2.png',
+               'метеор мизерный.png']
+for img in meteor_list:
+    meteor_images.append(pygame.image.load(path.join(img_dir, img)).convert_alpha())
+
+# изображения улучшений
+powerup_images = {}
+powerup_images['shield'] = pygame.image.load(path.join(img_dir, 'щит.png')).convert_alpha()
+powerup_images['gun'] = pygame.image.load(path.join(img_dir, 'энергия.png')).convert_alpha()
