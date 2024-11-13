@@ -189,3 +189,13 @@ for img in meteor_list:
 powerup_images = {}
 powerup_images['shield'] = pygame.image.load(path.join(img_dir, 'щит.png')).convert_alpha()
 powerup_images['gun'] = pygame.image.load(path.join(img_dir, 'энергия.png')).convert_alpha()
+
+# звуки
+shoot_sound = pygame.mixer.Sound(path.join(snd_dir, 'звук выстрела.wav'))
+shield_sound = pygame.mixer.Sound(path.join(snd_dir, 'звук подбора хитпоинтов.wav'))
+power_sound = pygame.mixer.Sound(path.join(snd_dir, 'звук подбора улучшения для доп мощи.wav'))
+expl_sounds = []
+for snd in ['звук взрыва метеорита 1.wav', 'звук взрыва метеорита 2.wav']:
+    expl_sounds.append(pygame.mixer.Sound(path.join(snd_dir, snd)))
+pygame.mixer.music.load(path.join(snd_dir, 'music in game.ogg'))
+pygame.mixer.music.set_volume(0.4)
