@@ -217,7 +217,21 @@ class Bullet(pygame.sprite.Sprite):
         if self.rect.bottom < 0:
             self.kill()
 
+# улучшения
+class Pow(pygame.sprite.Sprite):
+    def __init__(self, center):
+        pygame.sprite.Sprite.__init__(self)
+        self.type = random.choice(['shield', 'gun'])
+        self.image = powerup_images[self.type]
+        # альфа
+        self.rect = self.image.get_rect()
+        self.rect.center = center
+        self.speedy = 2
 
+    def update(self):
+        self.rect.y += self.speedy
+        if self.rect.top > HEIGHT:
+            self.kill()
 
 # изображения корабля, снарядов и метеоритов
 background = pygame.image.load(path.join(img_dir, "звездное небо фона.png")).convert_alpha()
