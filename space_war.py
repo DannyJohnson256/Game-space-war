@@ -320,3 +320,36 @@ powerups = pygame.sprite.Group()
 player = Player()
 all_sprites.add(player)
 pygame.mixer.music.play(loops=-1) # подключение музыки
+
+# цикл игры
+game_over = True
+running = True
+while running:
+    if game_over:
+        show_go_screen()
+        game_over = False
+        all_sprites = pygame.sprite.Group()
+        mobs = pygame.sprite.Group()
+        bullets = pygame.sprite.Group()
+        powerups = pygame.sprite.Group()
+        player = Player()
+        all_sprites.add(player)
+        for i in range(8):
+            newmob()
+        score = 0
+    clock.tick(FPS)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    all_sprites.update()
+    
+    # Рендеринг
+    screen.fill(BLACK)
+    screen.blit(background, background_rect)
+    all_sprites.draw(screen)
+    draw_text(screen, str(score), 30, WIDTH / 2, 10)
+    draw_shield_bar(screen, 5, 5, player.shield)
+    draw_lives(screen, WIDTH - 100, 5, player.lives,
+               player_mini_img)
+# завершение игры
+pygame.quit()
