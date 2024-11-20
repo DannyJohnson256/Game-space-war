@@ -277,6 +277,24 @@ powerup_images = {}
 powerup_images['shield'] = pygame.image.load(path.join(img_dir, 'щит.png')).convert_alpha()
 powerup_images['gun'] = pygame.image.load(path.join(img_dir, 'энергия.png')).convert_alpha()
 
+# загрузка анимации
+explosion_anim = {}
+explosion_anim['lg'] = []
+explosion_anim['sm'] = []
+explosion_anim['player'] = []
+for i in range(9):
+    filename = 'взрыв{}.png'.format(i)
+    img = pygame.image.load(path.join(img_dir, filename)).convert()
+    img.set_colorkey(BLACK)
+    img_lg = pygame.transform.scale(img, (75, 75))
+    explosion_anim['lg'].append(img_lg)
+    img_sm = pygame.transform.scale(img, (32, 32))
+    explosion_anim['sm'].append(img_sm)
+    filename = 'звуковая_волна{}.png'.format(i)
+    img = pygame.image.load(path.join(img_dir, filename)).convert()
+    img.set_colorkey(BLACK)
+    explosion_anim['player'].append(img)
+
 # звуки
 shoot_sound = pygame.mixer.Sound(path.join(snd_dir, 'звук выстрела.wav'))
 shield_sound = pygame.mixer.Sound(path.join(snd_dir, 'звук подбора хитпоинтов.wav'))
