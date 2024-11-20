@@ -319,7 +319,4 @@ bullets = pygame.sprite.Group()
 powerups = pygame.sprite.Group()
 player = Player()
 all_sprites.add(player)
-# настройка максимального количества метеоритов на экране
-for i in range(8):
-    newmob()
 pygame.mixer.music.play(loops=-1) # подключение музыки
