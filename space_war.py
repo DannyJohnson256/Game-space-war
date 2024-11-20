@@ -9,8 +9,15 @@ snd_dir = path.join(path.dirname(__file__), 'snd')
 # размеры окна
 WIDTH = 520
 HEIGHT = 600
+
+#количество кадров в секунду
 FPS = 60
+
+# время действия улучшений
 POWERUP_TIME = 5000
+
+#первоначальный счет
+score = 0
 
 # цвета
 WHITE = (255, 255, 255)
@@ -304,3 +311,15 @@ for snd in ['звук взрыва метеорита 1.wav', 'звук взры
     expl_sounds.append(pygame.mixer.Sound(path.join(snd_dir, snd)))
 pygame.mixer.music.load(path.join(snd_dir, 'music in game.ogg'))
 pygame.mixer.music.set_volume(0.4)
+
+# спрайты
+all_sprites = pygame.sprite.Group()
+mobs = pygame.sprite.Group()
+bullets = pygame.sprite.Group()
+powerups = pygame.sprite.Group()
+player = Player()
+all_sprites.add(player)
+# настройка максимального количества метеоритов на экране
+for i in range(8):
+    newmob()
+pygame.mixer.music.play(loops=-1) # подключение музыки
