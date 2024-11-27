@@ -342,6 +342,44 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     all_sprites.update()
+    hits = pygame.sprite.groupcollide(mobs, bullets, True, True)
+    for hit in hits:
+        score += 50 - hit.radius # начисление очков в зависимости от размера метеорита
+        random.choice(expl_sounds).play()
+        expl = Explosion(hit.rect.center, 'lg')
+        all_sprites.add(expl)
+        if random.random() > 0.9: # шанс появления улучшений = 10%
+            pow = Pow(hit.rect.center)
+            all_sprites.add(pow)
+            powerups.add(pow)
+        newmob()
+    hits = pygame.sprite.spritecollide(player, mobs, True, pygame.sprite.collide_circle)
+    for hit in hits:
+        player.shield -= hit.radius * 2
+        expl = Explosion(hit.rect.center, 'sm')
+        all_sprites.add(expl)
+        newmob()
+        if player.shield <= 0:
+            death_explosion = Explosion(player.rect.center, 'player')
+            all_sprites.add(death_explosion)
+            player.hide()
+            player.lives -= 1
+            player.shield = 100
+
+    hits = pygame.sprite.spritecollide(player, powerups, True)
+    for hit in hits:
+        if hit.type == 'shield':
+            player.shield += random.randrange(10, 30)
+            if player.shield >= 100:
+                player.shield = 100
+            power_sound.play() # проигрыш звука подборы доп. хп
+        if hit.type == 'gun':
+            player.powerup()
+            power_sound.play()
+
+    # Если игрок умер, игра окончена
+    if player.lives == 0 and not death_explosion.alive():
+        game_over = True
     
     # Рендеринг
     screen.fill(BLACK)
