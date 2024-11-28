@@ -74,7 +74,7 @@ def draw_lives(surf, x, y, lives, img):
 # экран окончания игры (появляется при запуске)
 def show_go_screen():
     screen.blit(background, background_rect)
-    draw_text(screen, "Shooter in space", 64, WIDTH / 2, HEIGHT / 4)
+    draw_text(screen, "Space war", 64, WIDTH / 2, HEIGHT / 4)
     draw_text(screen, '''Клавиши со стрелками для перемещения''', 22, WIDTH / 2, HEIGHT / 2)
     draw_text(screen, '''Пробел для стрельбы''', 22, WIDTH / 2, HEIGHT * 55 / 100)
     draw_text(screen, "Нажмите клавишу, чтобы начать", 18, WIDTH / 2, HEIGHT * 4 / 5)
@@ -389,5 +389,7 @@ while running:
     draw_shield_bar(screen, 5, 5, player.shield)
     draw_lives(screen, WIDTH - 100, 5, player.lives,
                player_mini_img)
+    # отрисовка всего
+    pygame.display.flip()
 # завершение игры
 pygame.quit()
