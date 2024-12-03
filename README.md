@@ -15,3 +15,6 @@ Description of the project:
 
 
 We, Daniel Grevtsev and Maxim Suprun, want to present a modest but interesting project related to the creation of games. We love old games and arcade machines, so we want to recreate the well-known arcade game of the Shoot ’em up genre of the 60s of the last century. The main goal of this project is to see how much you can modify old games, update their in-game models and physics.
+
+
+stack: Python & PyCharm
